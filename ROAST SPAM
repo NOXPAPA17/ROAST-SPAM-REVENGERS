@@ -1,0 +1,283 @@
+local Players=game:GetService("Players")
+local ReplicatedStorage=game:GetService("ReplicatedStorage")
+local LocalPlayer=Players.LocalPlayer
+local TextChatService=game:GetService("TextChatService")
+local SoundService=game:GetService("SoundService")
+local Debris=game:GetService("Debris")
+
+local function SayMessage(msg)
+if TextChatService.ChatVersion==Enum.ChatVersion.TextChatService then
+local config=TextChatService:FindFirstChild("ChatInputBarConfiguration")
+local channel=config and config.TargetTextChannel
+if channel then
+pcall(function()
+channel:SendAsync(msg)
+end)
+end
+else
+local remote=ReplicatedStorage:FindFirstChild("DefaultChatSystemChatEvents")
+local say=remote and remote:FindFirstChild("SayMessageRequest")
+if say then
+pcall(function()
+say:FireServer(msg,"All")
+end)
+end
+end
+end
+
+task.spawn(function()
+print("NOX ROAST SPAM LOADED")
+task.wait(1)
+pcall(function()
+game:GetService("StarterGui"):SetCore("SendNotification",{
+Title="NOX ROAST LOADED",
+Text="MADE BY NOX 👑",
+Duration=5
+})
+end)
+end)
+
+local function PlayClickSound()
+local sound=Instance.new("Sound")
+sound.SoundId="rbxassetid://12221967"
+sound.Volume=1
+sound.Parent=SoundService
+sound:Play()
+Debris:AddItem(sound,1)
+end
+
+local ScreenGui=Instance.new("ScreenGui")
+ScreenGui.Name="AayanRoastUI"
+ScreenGui.ResetOnSpawn=false
+ScreenGui.Parent=LocalPlayer:WaitForChild("PlayerGui")
+
+local ToggleButton=Instance.new("ImageButton")
+ToggleButton.Name="ToggleButton"
+ToggleButton.Size=UDim2.new(0,75,0,75)
+ToggleButton.Position=UDim2.new(0.05,0,0.4,0)
+ToggleButton.BackgroundColor3=Color3.fromRGB(5,5,5)
+ToggleButton.BackgroundTransparency=0.2
+ToggleButton.Image="rbxassetid://108899070630163"
+ToggleButton.ScaleType=Enum.ScaleType.Fit
+ToggleButton.Active=true
+ToggleButton.Draggable=true
+ToggleButton.Parent=ScreenGui
+
+local ToggleCorner=Instance.new("UICorner")
+ToggleCorner.CornerRadius=UDim.new(0,15)
+ToggleCorner.Parent=ToggleButton
+
+local ToggleStroke=Instance.new("UIStroke")
+ToggleStroke.Thickness=3
+ToggleStroke.Color=Color3.fromRGB(255,215,0)
+ToggleStroke.Parent=ToggleButton
+
+local GlowOuterFrame=Instance.new("Frame")
+GlowOuterFrame.Name="GlowOuterFrame"
+GlowOuterFrame.Size=UDim2.new(0,328,0,328)
+GlowOuterFrame.Position=UDim2.new(0.5,-164,0.5,-164)
+GlowOuterFrame.BackgroundColor3=Color3.fromRGB(255,200,0)
+GlowOuterFrame.BackgroundTransparency=0.8
+GlowOuterFrame.Active=true
+GlowOuterFrame.Draggable=true
+GlowOuterFrame.Visible=false
+GlowOuterFrame.Parent=ScreenGui
+
+local OuterCorner=Instance.new("UICorner")
+OuterCorner.CornerRadius=UDim.new(0,12)
+OuterCorner.Parent=GlowOuterFrame
+
+local OuterStroke=Instance.new("UIStroke")
+OuterStroke.Thickness=4
+OuterStroke.Color=Color3.fromRGB(255,215,0)
+OuterStroke.Parent=GlowOuterFrame
+
+local MainFrame=Instance.new("Frame")
+MainFrame.Name="MainFrame"
+MainFrame.Size=UDim2.new(0,320,0,320)
+MainFrame.Position=UDim2.new(0,4,0,4)
+MainFrame.BackgroundColor3=Color3.fromRGB(10,10,15)
+MainFrame.BackgroundTransparency=0.15
+MainFrame.BorderSizePixel=0
+MainFrame.Parent=GlowOuterFrame
+
+local MainCorner=Instance.new("UICorner")
+MainCorner.CornerRadius=UDim.new(0,10)
+MainCorner.Parent=MainFrame
+
+local CoreUIStroke=Instance.new("UIStroke")
+CoreUIStroke.Thickness=2.5
+CoreUIStroke.Color=Color3.fromRGB(255,215,0)
+CoreUIStroke.Parent=MainFrame
+
+local Title=Instance.new("TextLabel")
+Title.Size=UDim2.new(1,0,0,30)
+Title.Position=UDim2.new(0,0,0,10)
+Title.BackgroundTransparency=1
+Title.Text="💀 NOX ROAST 💀"
+Title.TextColor3=Color3.fromRGB(255,215,0)
+Title.TextSize=18
+Title.Font=Enum.Font.SourceSansBold
+Title.Parent=MainFrame
+
+local SubTitle=Instance.new("TextLabel")
+SubTitle.Size=UDim2.new(1,0,0,20)
+SubTitle.Position=UDim2.new(0,0,0,35)
+SubTitle.BackgroundTransparency=1
+SubTitle.Text="MADE BY NOX 👑"
+SubTitle.TextColor3=Color3.fromRGB(255,215,0)
+SubTitle.TextSize=13
+SubTitle.Font=Enum.Font.SourceSansBold
+SubTitle.Parent=MainFrame
+
+local TargetInput=Instance.new("TextBox")
+TargetInput.PlaceholderText="🎯 Enter Target Name..."
+TargetInput.Size=UDim2.new(0.9,0,0,40)
+TargetInput.Position=UDim2.new(0.05,0,0,75)
+TargetInput.BackgroundColor3=Color3.fromRGB(15,15,15)
+TargetInput.BackgroundTransparency=0.4
+TargetInput.TextColor3=Color3.fromRGB(255,215,0)
+TargetInput.PlaceholderColor3=Color3.fromRGB(180,150,50)
+TargetInput.TextSize=14
+TargetInput.Font=Enum.Font.SourceSans
+TargetInput.Parent=MainFrame
+
+local TargetCorner=Instance.new("UICorner")
+TargetCorner.CornerRadius=UDim.new(0,6)
+TargetCorner.Parent=TargetInput
+
+local SpeedInput=Instance.new("TextBox")
+SpeedInput.PlaceholderText="⚡ Speed Delay"
+SpeedInput.Text="3"
+SpeedInput.Size=UDim2.new(0.9,0,0,40)
+SpeedInput.Position=UDim2.new(0.05,0,0,130)
+SpeedInput.BackgroundColor3=Color3.fromRGB(15,15,15)
+SpeedInput.BackgroundTransparency=0.4
+SpeedInput.TextColor3=Color3.fromRGB(255,215,0)
+SpeedInput.PlaceholderColor3=Color3.fromRGB(180,150,50)
+SpeedInput.TextSize=14
+SpeedInput.Font=Enum.Font.SourceSans
+SpeedInput.Parent=MainFrame
+
+local SpeedCorner=Instance.new("UICorner")
+SpeedCorner.CornerRadius=UDim.new(0,6)
+SpeedCorner.Parent=SpeedInput
+
+local StartBtn=Instance.new("TextButton")
+StartBtn.Text="START 😈"
+StartBtn.Size=UDim2.new(0.9,0,0,45)
+StartBtn.Position=UDim2.new(0.05,0,0,195)
+StartBtn.BackgroundColor3=Color3.fromRGB(255,200,0)
+StartBtn.TextColor3=Color3.fromRGB(0,0,0)
+StartBtn.TextSize=16
+StartBtn.Font=Enum.Font.SourceSansBold
+StartBtn.Parent=MainFrame
+
+local StartCorner=Instance.new("UICorner")
+StartCorner.CornerRadius=UDim.new(0,6)
+StartCorner.Parent=StartBtn
+
+local StopBtn=Instance.new("TextButton")
+StopBtn.Text="STOP 🛑"
+StopBtn.Size=UDim2.new(0.9,0,0,45)
+StopBtn.Position=UDim2.new(0.05,0,0,255)
+StopBtn.BackgroundColor3=Color3.fromRGB(150,0,0)
+StopBtn.TextColor3=Color3.fromRGB(255,255,255)
+StopBtn.TextSize=16
+StopBtn.Font=Enum.Font.SourceSansBold
+StopBtn.Parent=MainFrame
+
+local StopCorner=Instance.new("UICorner")
+StopCorner.CornerRadius=UDim.new(0,6)
+StopCorner.Parent=StopBtn
+
+local FooterText=Instance.new("TextLabel")
+FooterText.Size=UDim2.new(1,0,0,30)
+FooterText.Position=UDim2.new(0,0,1,-30)
+FooterText.BackgroundTransparency=1
+FooterText.Text="STATUS: NOX 👑"
+FooterText.TextColor3=Color3.fromRGB(255,200,0)
+FooterText.TextSize=11
+FooterText.Font=Enum.Font.SourceSansBold
+FooterText.Parent=MainFrame
+
+local CloseBtn=Instance.new("TextButton")
+CloseBtn.Text="X"
+CloseBtn.Size=UDim2.new(0,30,0,30)
+CloseBtn.Position=UDim2.new(1,-35,0,5)
+CloseBtn.BackgroundTransparency=1
+CloseBtn.TextColor3=Color3.fromRGB(255,200,0)
+CloseBtn.TextSize=18
+CloseBtn.Font=Enum.Font.SourceSansBold
+CloseBtn.Parent=MainFrame
+
+local IsSpamming=false
+
+local templates={
+"[TARGET] Bro, itna confidence laata kahan se hai? 😂",
+"[TARGET] Bhai, tera gameplay samajhne ke liye tutorial chahiye 💀",
+"[TARGET] GG bro, comeback ka wait rahega 😭",
+"[TARGET] Bhai, aaj luck tera saath nahi de raha 😂",
+"[TARGET] Bro, next round mein comeback karke dikha 🔥",
+"[TARGET] EZ BRO,tere jese roj pelta me bro 👅",
+"[TARGET]  BETE, abhi tu  bacha h  kuch ni kr skta 😂",
+"[TARGET]  biro, abhi tu nox ke per chu tere bas ki bat nhi 💀",
+"[TARGET]  bete, agr papa bolega to tujhe chor dunga 🤞🏻",
+"[TARGET]   EZ BRO, ITNA LAYLU FYTER H🤣",
+"[TARGET]   son,leave marde wrna to fir tu janta hi h ....😃",
+"[TARGET]   alelele, mene suna kisi ki pant gili ho gyi 🤡"
+}
+
+ToggleButton.MouseButton1Click:Connect(function()
+PlayClickSound()
+GlowOuterFrame.Visible=not GlowOuterFrame.Visible
+end)
+
+CloseBtn.MouseButton1Click:Connect(function()
+PlayClickSound()
+IsSpamming=false
+ScreenGui:Destroy()
+end)
+
+StartBtn.MouseButton1Click:Connect(function()
+PlayClickSound()
+if IsSpamming then return end
+
+IsSpamming=true
+StartBtn.Text="NOX ACTIVE..."
+StartBtn.BackgroundColor3=Color3.fromRGB(10,50,120)
+
+local delayTime=math.clamp(tonumber(SpeedInput.Text) or 3,3,60)
+
+task.spawn(function()
+local patternIndex=1
+
+while IsSpamming and ScreenGui.Parent do
+local currentTarget=TargetInput.Text
+if currentTarget=="" then
+currentTarget="BRO"
+end
+
+local chosenTemplate=templates[patternIndex]
+local finalMessage=string.gsub(
+chosenTemplate,
+"%[TARGET%]",
+function()
+return currentTarget
+end
+)
+
+SayMessage(finalMessage)
+
+patternIndex=(patternIndex%#templates)+1
+task.wait(delayTime)
+end
+end)
+end)
+
+StopBtn.MouseButton1Click:Connect(function()
+PlayClickSound()
+IsSpamming=false
+StartBtn.Text="START 😈"
+StartBtn.BackgroundColor3=Color3.fromRGB(255,200,0)
+end)
