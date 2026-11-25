@@ -31,7 +31,7 @@ task.wait(1)
 pcall(function()
 game:GetService("StarterGui"):SetCore("SendNotification",{
 Title="NOX ROAST LOADED",
-Text="MADE BY NOX 👑",
+Text="MADE BY ALEX 👑",
 Duration=5
 })
 end)
@@ -124,7 +124,7 @@ local SubTitle=Instance.new("TextLabel")
 SubTitle.Size=UDim2.new(1,0,0,20)
 SubTitle.Position=UDim2.new(0,0,0,35)
 SubTitle.BackgroundTransparency=1
-SubTitle.Text="MADE BY NOX 👑"
+SubTitle.Text="MADE BY ALEX 👑"
 SubTitle.TextColor3=Color3.fromRGB(255,215,0)
 SubTitle.TextSize=13
 SubTitle.Font=Enum.Font.SourceSansBold
@@ -195,7 +195,7 @@ local FooterText=Instance.new("TextLabel")
 FooterText.Size=UDim2.new(1,0,0,30)
 FooterText.Position=UDim2.new(0,0,1,-30)
 FooterText.BackgroundTransparency=1
-FooterText.Text="STATUS: NOX 👑"
+FooterText.Text="STATUS: ALEX 👑"
 FooterText.TextColor3=Color3.fromRGB(255,200,0)
 FooterText.TextSize=11
 FooterText.Font=Enum.Font.SourceSansBold
